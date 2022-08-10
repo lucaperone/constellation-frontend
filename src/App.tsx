@@ -4,9 +4,9 @@ import { Grid } from "@mui/material"
 import { Route, Routes } from "react-router-dom"
 
 import Navbar from "./components/Navbar"
-import Favourites from "./routes/Favourites"
+import Favorites from "./routes/Favorites"
 import Friends from "./routes/Friends"
-import Lists from "./routes/Lists"
+import Discover from "./routes/Discover"
 import Network from "./routes/Network"
 
 const darkTheme = createTheme({
@@ -26,8 +26,8 @@ function App() {
                 <Grid item xs>
                     <Routes>
                         <Route path="/" element={<Network />} />
-                        <Route path="/lists" element={<Lists />} />
-                        <Route path="/favourites" element={<Favourites />} />
+                        <Route path="/discover" element={<Discover />} />
+                        <Route path="/favorites" element={<Favorites />} />
                         <Route path="/friends" element={<Friends />} />
                     </Routes>
                 </Grid>
