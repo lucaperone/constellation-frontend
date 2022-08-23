@@ -1,7 +1,12 @@
 import React from "react"
+import Graph from "../components/Graph/Graph"
 
 const Network = () => {
-    return <div>Network</div>
+    return (
+        <>
+            <Graph />
+        </>
+    )
 }
 
 export default Network
