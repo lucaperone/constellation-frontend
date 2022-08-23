@@ -1,0 +1,20 @@
+.swiper {
+    width: 100%;
+    padding: 0.5rem 0 3rem;
+}
+
+.swiper-slide {
+    min-width: 280px;
+    width: auto;
+    height: auto;
+}
+
+.swiper-slide:last-child {
+    padding-right: 3rem;
+}
+
+.swiper-button-next:after,
+.swiper-button-prev:after {
+    color: white;
+    filter: drop-shadow(0px 0px 4px black);
+}
