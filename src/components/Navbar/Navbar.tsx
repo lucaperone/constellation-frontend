@@ -1,7 +1,7 @@
 import React from "react"
 import { NavLink } from "react-router-dom"
 import {
-    Drawer,
+    Paper,
     List,
     ListItem,
     ListItemButton,
@@ -17,22 +17,13 @@ import "./Navbar.css"
 
 const Navbar = () => {
     return (
-        <Drawer
-            sx={{
-                width: "auto",
-                flexShrink: 0,
-                "& .MuiDrawer-paper": {
-                    width: "auto",
-                    boxSizing: "border-box",
-                    justifyContent: "center",
-                },
-            }}
-            variant="permanent"
-            anchor="left"
-            hideBackdrop
-            PaperProps={{ elevation: 1, variant: "elevation" }}
+        <Paper
+            elevation={6}
+            variant="elevation"
+            sx={{ height: "100%", display: "flex" }}
+            square
         >
-            <List component="nav">
+            <List component="nav" sx={{ alignSelf: "center" }}>
                 {[
                     {
                         icon: HubIcon,
@@ -71,7 +62,7 @@ const Navbar = () => {
                     </ListItem>
                 ))}
             </List>
-        </Drawer>
+        </Paper>
     )
 }
 
