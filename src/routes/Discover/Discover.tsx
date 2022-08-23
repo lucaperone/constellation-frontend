@@ -6,52 +6,25 @@ import { Box, Typography } from "@mui/material"
 import ItemCard from "../../components/ItemCard/ItemCard"
 import Loader from "../../components/Loader/Loader"
 
-import { Item } from "../../components/Types"
+import { Item, List } from "../../components/Types"
 
 import "swiper/css"
 import "swiper/css/navigation"
 import "./Discover.css"
 
-type List = {
-    title: string
-    ref?: {
-        type: string
-        id: number
-        name: string
-    }
-    url: string
-    items: Item[]
+type Props = {
+    lists: List[]
+    loading: boolean
+    error: string
 }
 
-const Discover = () => {
-    const [data, setData] = useState<List[]>([])
-    const [error, setError] = useState("")
-    const [loading, setLoading] = useState(true)
-    useEffect(() => {
-        fetch(`http://localhost:3001/recommendation/1/lists`)
-            .then((response) => {
-                if (!response.ok) {
-                    throw new Error(
-                        `This is an HTTP error: The status is ${response.status}`
-                    )
-                }
-                return response.json()
-            })
-            .then((actualData) => {
-                setData(actualData)
-                setError("")
-            })
-            .catch((err) => {
-                setError(err.message)
-                setData(JSON.parse("{}"))
-            })
-            .finally(() => {
-                setLoading(false)
-            })
-    }, [])
-
+const Discover = ({ lists, loading, error }: Props) => {
     if (loading) {
         return <Loader />
+    }
+
+    if (error !== "") {
+        return <div>{error}</div>
     }
 
     return (
@@ -64,7 +37,7 @@ const Discover = () => {
                 padding: "2rem 0",
             }}
         >
-            {data
+            {lists
                 .filter((list) => list.items.length !== 0)
                 .map((list, i) => (
                     <div key={i}>

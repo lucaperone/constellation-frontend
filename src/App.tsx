@@ -1,13 +1,9 @@
 import { ThemeProvider, createTheme } from "@mui/material/styles"
 import CssBaseline from "@mui/material/CssBaseline"
 import { Grid } from "@mui/material"
-import { Route, Routes } from "react-router-dom"
 
 import Navbar from "./components/Navbar/Navbar"
-import Favorites from "./routes/Favorites"
-import Friends from "./routes/Friends"
-import Discover from "./routes/Discover/Discover"
-import Network from "./routes/Network"
+import DataPreLoader from "./DataPreLoader"
 
 const darkTheme = createTheme({
     palette: {
@@ -30,12 +26,7 @@ function App() {
                     <Navbar />
                 </Grid>
                 <Grid item xs sx={{ display: "contents" }}>
-                    <Routes>
-                        <Route path="/" element={<Network />} />
-                        <Route path="/discover" element={<Discover />} />
-                        <Route path="/favorites" element={<Favorites />} />
-                        <Route path="/friends" element={<Friends />} />
-                    </Routes>
+                    <DataPreLoader />
                 </Grid>
             </Grid>
         </ThemeProvider>

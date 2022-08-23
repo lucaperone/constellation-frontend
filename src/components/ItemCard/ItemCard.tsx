@@ -18,7 +18,7 @@ const ItemCard = ({ item }: Props) => {
 
     const categories: String[] = []
     for (const category of ["Night club", "Bar", "Concert"]) {
-        if (item.features[category] == 1) categories.push(category)
+        if (item.features[category] === 1) categories.push(category)
     }
 
     return (
@@ -32,7 +32,7 @@ const ItemCard = ({ item }: Props) => {
                 <CardMedia
                     component="img"
                     height="140"
-                    image={`https://picsum.photos/480/240?random=${item.id}`}
+                    image={`https://picsum.photos/480/240?random=${item.id.toString()}`}
                     alt="random image"
                 />
                 <CardContent>

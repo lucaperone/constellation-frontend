@@ -6,45 +6,19 @@ import "./Graph.css"
 
 let graph: any = null
 
-const Graph = () => {
-    const ref = React.useRef(null)
-    const [data, setData] = useState<JSON>(JSON.parse("{}"))
-    const [loading, setLoading] = useState<boolean>(true)
-    const [error, setError] = useState<string>("")
+type Props = {
+    data: JSON
+}
 
-    useEffect(() => {
-        fetch(`http://localhost:3001/graph/1`)
-            .then((response) => {
-                if (!response.ok) {
-                    throw new Error(
-                        `This is an HTTP error: The status is ${response.status}`
-                    )
-                }
-                return response.json()
-            })
-            .then((actualData) => {
-                setData(actualData)
-                setError("")
-            })
-            .catch((err) => {
-                setError(err.message)
-                setData(JSON.parse("{}"))
-            })
-            .finally(() => {
-                setLoading(false)
-            })
-    }, [])
+const Graph = ({ data }: Props) => {
+    const ref = React.useRef(null)
 
     useEffect(() => {
         G6.registerNode(
             "background-animate",
             {
                 afterDraw(cfg, group) {
-                    console.log("after")
-                    console.table(cfg)
-                    console.table(group)
                     if (cfg && cfg.size && group) {
-                        console.log("if")
                         let r
                         if (typeof cfg.size == "number") {
                             r = cfg.size / 2
@@ -90,21 +64,18 @@ const Graph = () => {
                 container: ref.current!,
                 fitView: true,
                 layout: {
-                    // type: "force",
-                    // preventOverlap: true,
-                    // linkDistance: 150,
-                    // nodeStrength: -150,
-                    type: "fruchterman",
-                    gravity: 5,
-                    speed: 2,
-                    // clustering: true,
-                    // clusterGravity: 30,
-                    // maxIteration: 2000,
-                    workerEnabled: true, // Whether to activate web-worker
-                    gpuEnabled: true, // Whether to enable the GPU parallel computing, supported by G6 4.0
+                    type: "force",
+                    preventOverlap: true,
+                    linkDistance: 150,
+                    nodeStrength: -150,
+                    // type: "fruchterman",
+                    // gravity: 5,
+                    // speed: 2,
+                    // workerEnabled: true, // Whether to activate web-worker
+                    // gpuEnabled: true, // Whether to enable the GPU parallel computing, supported by G6 4.0
                 },
                 modes: {
-                    default: ["drag-canvas", "zoom-canvas"],
+                    default: ["drag-canvas", "zoom-canvas", "drag-node"],
                 },
                 defaultEdge: {
                     type: "bicubic",
@@ -136,7 +107,6 @@ const Graph = () => {
             newData.nodes[0].size = 35
             newData.nodes[0].color = "#ff3076"
             graph.data(newData)
-            console.table(newData)
         } else {
             graph.data(data)
         }
