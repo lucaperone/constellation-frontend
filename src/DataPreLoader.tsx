@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react"
 
 import { Route, Routes } from "react-router-dom"
 
-import Favorites from "./routes/Favorites"
+import Favourites from "./routes/Favourites"
 import Friends from "./routes/Friends"
 import Discover from "./routes/Discover/Discover"
 import Network from "./routes/Network"
@@ -14,7 +14,7 @@ const DataPreLoader = () => {
 
     const [graph, setGraph] = useState<JSON>(JSON.parse("{}"))
     const [graphLoading, setGraphLoading] = useState<boolean>(true)
-    const [graphError, setGrapError] = useState<string>("")
+    const [graphError, setGraphError] = useState<string>("")
 
     useEffect(() => {
         fetch(`http://localhost:3001/graph/1`)
@@ -28,10 +28,10 @@ const DataPreLoader = () => {
             })
             .then((actualGraph) => {
                 setGraph(actualGraph)
-                setGrapError("")
+                setGraphError("")
             })
             .catch((err) => {
-                setGrapError(err.message)
+                setGraphError(err.message)
                 setGraph(JSON.parse("{}"))
             })
             .finally(() => {
@@ -87,7 +87,7 @@ const DataPreLoader = () => {
                     />
                 }
             />
-            <Route path="/favorites" element={<Favorites />} />
+            <Route path="/Favourites" element={<Favourites />} />
             <Route path="/friends" element={<Friends />} />
         </Routes>
     )
