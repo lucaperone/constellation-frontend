@@ -35,7 +35,7 @@ const Navbar = () => {
                     },
                     {
                         icon: FavoriteIcon,
-                        link: "/favorites",
+                        link: "/favourites",
                     },
                     {
                         icon: GroupIcon,

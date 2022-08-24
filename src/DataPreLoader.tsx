@@ -87,7 +87,7 @@ const DataPreLoader = () => {
                     />
                 }
             />
-            <Route path="/Favourites" element={<Favourites />} />
+            <Route path="/favourites" element={<Favourites />} />
             <Route path="/friends" element={<Friends />} />
         </Routes>
     )
