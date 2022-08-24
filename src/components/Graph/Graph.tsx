@@ -10,6 +10,12 @@ type Props = {
     data: JSON
 }
 
+function refreshDragedNodePosition(e: any) {
+    const model = e.item.get("model")
+    model.fx = e.x
+    model.fy = e.y
+}
+
 const Graph = ({ data }: Props) => {
     const ref = React.useRef(null)
 
@@ -66,23 +72,23 @@ const Graph = ({ data }: Props) => {
                 layout: {
                     type: "force",
                     preventOverlap: true,
-                    linkDistance: 150,
-                    nodeStrength: -150,
+                    linkDistance: 75,
+                    nodeStrength: -500,
                     // type: "fruchterman",
-                    // gravity: 5,
-                    // speed: 2,
+                    // gravity: 0.1,
+                    // speed: 10,
                     // workerEnabled: true, // Whether to activate web-worker
                     // gpuEnabled: true, // Whether to enable the GPU parallel computing, supported by G6 4.0
                 },
                 modes: {
-                    default: ["drag-canvas", "zoom-canvas", "drag-node"],
+                    default: ["drag-canvas", "zoom-canvas"],
                 },
                 defaultEdge: {
                     type: "bicubic",
                     style: {
                         stroke: "#505050",
                         lineWidth: 1,
-                        lineDash: [10, 2],
+                        // lineDash: [10, 2],
                     },
                 },
                 defaultNode: {
@@ -111,6 +117,20 @@ const Graph = ({ data }: Props) => {
             graph.data(data)
         }
         graph.render()
+
+        graph.on("node:dragstart", function (e: any) {
+            graph.layout()
+            refreshDragedNodePosition(e)
+        })
+        graph.on("node:drag", function (e: any) {
+            const forceLayout = graph.get("layoutController").layoutMethods[0]
+            forceLayout.execute()
+            refreshDragedNodePosition(e)
+        })
+        graph.on("node:dragend", function (e: any) {
+            e.item.get("model").fx = null
+            e.item.get("model").fy = null
+        })
 
         return () => {
             graph.destroy()
