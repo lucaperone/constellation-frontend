@@ -7,10 +7,10 @@ import {
     Typography,
 } from "@mui/material"
 
-import { Item } from "../Types"
+import { Node } from "../Types"
 
 type Props = {
-    item: Item
+    item: Node
 }
 
 const ItemCard = ({ item }: Props) => {

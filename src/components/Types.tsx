@@ -1,4 +1,4 @@
-export type Item = {
+export type Node = {
     id: number
     name: string
     features: {
@@ -14,5 +14,5 @@ export type List = {
         name: string
     }
     url: string
-    items: Item[]
+    items: Node[]
 }

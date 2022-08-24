@@ -3,11 +3,11 @@ import React, { useEffect, useState } from "react"
 import { Grid } from "@mui/material"
 import Loader from "../components/Loader/Loader"
 
-import { Item } from "../components/Types"
+import { Node } from "../components/Types"
 import ItemCard from "../components/ItemCard/ItemCard"
 
 const Favourites = () => {
-    const [favourites, setFavourites] = useState<Item[]>([])
+    const [favourites, setFavourites] = useState<Node[]>([])
     const [loading, setLoading] = useState<boolean>(true)
     const [error, setError] = useState<string>("")
 

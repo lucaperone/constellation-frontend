@@ -11,6 +11,7 @@ const Loader = () => {
                 justifyContent: "center",
                 alignItems: "center",
                 width: "100%",
+                height: "100%",
             }}
         >
             <PacmanLoader loading={true} color="#ff0046" />

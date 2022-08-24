@@ -6,7 +6,7 @@ import { Box, Typography } from "@mui/material"
 import ItemCard from "../../components/ItemCard/ItemCard"
 import Loader from "../../components/Loader/Loader"
 
-import { Item, List } from "../../components/Types"
+import { List } from "../../components/Types"
 
 import "swiper/css"
 import "swiper/css/navigation"

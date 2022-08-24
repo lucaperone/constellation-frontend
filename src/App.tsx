@@ -25,7 +25,7 @@ function App() {
                 <Grid item xs="auto">
                     <Navbar />
                 </Grid>
-                <Grid item xs sx={{ display: "contents" }}>
+                <Grid item xs sx={{ minWidth: 0 }}>
                     <DataPreLoader />
                 </Grid>
             </Grid>
