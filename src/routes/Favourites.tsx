@@ -6,8 +6,21 @@ import Loader from "../components/Loader/Loader"
 import { Node } from "../components/Types"
 import ItemCard from "../components/ItemCard/ItemCard"
 
-const Favourites = () => {
-    const [favourites, setFavourites] = useState<Node[]>([])
+type FavouritesList = {
+    item: Node
+    rating: number
+}[]
+
+type Props = {
+    changeScore: (
+        item_id: number,
+        is_in_favourites: boolean,
+        rating: number | null
+    ) => void
+}
+
+const Favourites = ({ changeScore }: Props) => {
+    const [favourites, setFavourites] = useState<FavouritesList>([])
     const [loading, setLoading] = useState<boolean>(true)
     const [error, setError] = useState<string>("")
 
@@ -44,9 +57,14 @@ const Favourites = () => {
 
     return (
         <Grid container spacing={3} sx={{ padding: "3rem" }}>
-            {favourites.map((favourite) => (
-                <Grid item xs={4} key={favourite.id}>
-                    <ItemCard item={favourite} />
+            {favourites.map(({ item, rating }) => (
+                <Grid item xs={4} key={item.id}>
+                    <ItemCard
+                        item={item}
+                        is_in_favourites={true}
+                        rating={rating}
+                        changeScore={changeScore}
+                    />
                 </Grid>
             ))}
         </Grid>

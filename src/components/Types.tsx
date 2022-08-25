@@ -14,5 +14,9 @@ export type List = {
         name: string
     }
     url: string
-    items: Node[]
+    items: {
+        item: Node
+        is_in_favourites: boolean
+        rating: number | null
+    }[]
 }

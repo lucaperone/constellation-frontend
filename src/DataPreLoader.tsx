@@ -65,6 +65,27 @@ const DataPreLoader = () => {
             })
     }, [])
 
+    function changeScore(
+        item_id: number,
+        is_in_favourites: boolean,
+        rating: number | null
+    ) {
+        setLists((prevLists) => {
+            return prevLists.map((list) => {
+                return {
+                    ...list,
+                    items: list.items.map((obj) => {
+                        if (obj.item.id === item_id) {
+                            obj.is_in_favourites = is_in_favourites
+                            obj.rating = rating
+                        }
+                        return obj
+                    }),
+                }
+            })
+        })
+    }
+
     return (
         <Routes>
             <Route
@@ -84,10 +105,14 @@ const DataPreLoader = () => {
                         lists={lists}
                         loading={listsLoading}
                         error={listsError}
+                        changeScore={changeScore}
                     />
                 }
             />
-            <Route path="/favourites" element={<Favourites />} />
+            <Route
+                path="/favourites"
+                element={<Favourites changeScore={changeScore} />}
+            />
             <Route path="/friends" element={<Friends />} />
         </Routes>
     )

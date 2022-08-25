@@ -16,9 +16,14 @@ type Props = {
     lists: List[]
     loading: boolean
     error: string
+    changeScore: (
+        item_id: number,
+        is_in_favourites: boolean,
+        rating: number | null
+    ) => void
 }
 
-const Discover = ({ lists, loading, error }: Props) => {
+const Discover = ({ lists, loading, error, changeScore }: Props) => {
     if (loading) {
         return <Loader />
     }
@@ -57,13 +62,20 @@ const Discover = ({ lists, loading, error }: Props) => {
                             spaceBetween={30}
                             slidesOffsetBefore={48}
                         >
-                            {list.items.map((item, j) => (
-                                <SwiperSlide
-                                    key={i.toString() + "-" + j.toString()}
-                                >
-                                    <ItemCard item={item} />
-                                </SwiperSlide>
-                            ))}
+                            {list.items.map(
+                                ({ item, is_in_favourites, rating }, j) => (
+                                    <SwiperSlide
+                                        key={i.toString() + "-" + j.toString()}
+                                    >
+                                        <ItemCard
+                                            item={item}
+                                            is_in_favourites={is_in_favourites}
+                                            rating={rating}
+                                            changeScore={changeScore}
+                                        />
+                                    </SwiperSlide>
+                                )
+                            )}
                         </Swiper>
                     </div>
                 ))}
