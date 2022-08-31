@@ -72,8 +72,6 @@ const ItemCard = ({ item, is_in_favourites, rating, changeScore }: Props) => {
         }
     }
 
-    console.table(item.features)
-
     return (
         <Card
             sx={{ maxWidth: 345, position: "relative" }}
