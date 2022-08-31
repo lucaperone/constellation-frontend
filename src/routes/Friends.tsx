@@ -35,7 +35,7 @@ const Favourites = () => {
     const [suggestionsStatus, setSuggestionsStatus] = useState<status>({})
 
     useEffect(() => {
-        fetch(`http://localhost:3001/friends/1`)
+        fetch(`https://constellation-api.herokuapp.com/friends/1`)
             .then((response) => {
                 if (!response.ok) {
                     throw new Error(
@@ -58,7 +58,9 @@ const Favourites = () => {
     }, [])
 
     useEffect(() => {
-        fetch(`http://localhost:3001/recommendation/1/friends`)
+        fetch(
+            `https://constellation-api.herokuapp.com/recommendation/1/friends`
+        )
             .then((response) => {
                 if (!response.ok) {
                     throw new Error(
@@ -98,20 +100,23 @@ const Favourites = () => {
             return { ...prevState }
         })
         try {
-            const response = await fetch("http://localhost:3001/friendship", {
-                method: "POST",
-                body: JSON.stringify({
-                    friendship: {
-                        user: 1,
-                        friend: suggestion.id,
-                        are_friends: true,
+            const response = await fetch(
+                "https://constellation-api.herokuapp.com/friendship",
+                {
+                    method: "POST",
+                    body: JSON.stringify({
+                        friendship: {
+                            user: 1,
+                            friend: suggestion.id,
+                            are_friends: true,
+                        },
+                    }),
+                    headers: {
+                        "Content-Type": "application/json",
+                        Accept: "application/json",
                     },
-                }),
-                headers: {
-                    "Content-Type": "application/json",
-                    Accept: "application/json",
-                },
-            })
+                }
+            )
 
             if (!response.ok) {
                 throw new Error(`Error! status: ${response.status}`)

@@ -25,7 +25,7 @@ const Favourites = ({ changeScore }: Props) => {
     const [error, setError] = useState<string>("")
 
     useEffect(() => {
-        fetch(`http://localhost:3001/favourites/1`)
+        fetch(`https://constellation-api.herokuapp.com/favourites/1`)
             .then((response) => {
                 if (!response.ok) {
                     throw new Error(

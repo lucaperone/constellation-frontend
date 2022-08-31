@@ -17,7 +17,7 @@ const DataPreLoader = () => {
     const [graphError, setGraphError] = useState<string>("")
 
     useEffect(() => {
-        fetch(`http://localhost:3001/graph/1`)
+        fetch(`https://constellation-api.herokuapp.com/graph/1`)
             .then((response) => {
                 if (!response.ok) {
                     throw new Error(
@@ -43,7 +43,7 @@ const DataPreLoader = () => {
     const [listsError, setListsError] = useState("")
     const [listsLoading, setListsLoading] = useState(true)
     useEffect(() => {
-        fetch(`http://localhost:3001/recommendation/1/lists`)
+        fetch(`https://constellation-api.herokuapp.com/recommendation/1/lists`)
             .then((response) => {
                 if (!response.ok) {
                     throw new Error(

@@ -48,21 +48,24 @@ const ItemCard = ({ item, is_in_favourites, rating, changeScore }: Props) => {
             setItemRating(rating)
             setItemFav(is_in_favourites)
             changeScore(item.id, is_in_favourites, rating ? rating * 2 : null)
-            const response = await fetch("http://localhost:3001/feedback", {
-                method: "POST",
-                body: JSON.stringify({
-                    feedback: {
-                        user: 1,
-                        item: item.id,
-                        is_in_favourites: is_in_favourites,
-                        rating: rating ? rating * 2 : null,
+            const response = await fetch(
+                "https://constellation-api.herokuapp.com/feedback",
+                {
+                    method: "POST",
+                    body: JSON.stringify({
+                        feedback: {
+                            user: 1,
+                            item: item.id,
+                            is_in_favourites: is_in_favourites,
+                            rating: rating ? rating * 2 : null,
+                        },
+                    }),
+                    headers: {
+                        "Content-Type": "application/json",
+                        Accept: "application/json",
                     },
-                }),
-                headers: {
-                    "Content-Type": "application/json",
-                    Accept: "application/json",
-                },
-            })
+                }
+            )
 
             if (!response.ok) {
                 throw new Error(`Error! status: ${response.status}`)
