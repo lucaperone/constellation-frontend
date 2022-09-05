@@ -108,7 +108,7 @@ const ItemCard = ({ item, is_in_favourites, rating, changeScore }: Props) => {
                                 feature_value[1] === 1
                         )
                         .map((feature_value) => (
-                            <Grid item>
+                            <Grid item key={feature_value[0]}>
                                 <Chip
                                     label={feature_value[0]}
                                     size="small"
