@@ -56,7 +56,11 @@ const Favourites = ({ changeScore }: Props) => {
     }
 
     return (
-        <Grid container spacing={3} sx={{ padding: "3rem" }}>
+        <Grid
+            container
+            spacing={3}
+            sx={{ padding: "2rem 3rem", maxHeight: "100%", overflow: "auto" }}
+        >
             {favourites.map(({ item, rating }) => (
                 <Grid item xs={4} key={item.id}>
                     <ItemCard
